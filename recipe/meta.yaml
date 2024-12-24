@@ -10,18 +10,20 @@ source:
   sha256: c0a9eef78cdb70550e08c08bd2d3cd3fb06ea9100de72d7c99ce9f329daf8797
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   noarch: python
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - pyerf
     - pyerf.tests
